@@ -3,28 +3,36 @@ import { fetchPlayers } from "../API";
 import { fetchSinglePlayer } from "../API";
 import SinglePlayer from "./SinglePlayer";
 import { useNavigate } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const styles = {
   list: {
-    listStyleType: "none",
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '20px', // space between items
     padding: 0,
-    margin: 0,
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    listStyle: 'none',
   },
   listItem: {
-    padding: "10px",
-    border: "3px solid #ccc",
-    marginBottom: "10px",
-    borderRadius: "1rem",
-    backgroundColor: "#f9f9f9",
-    color: "#333",
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    padding: '10px',
+    width: '200px', // adjust the width as needed
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    cursor: 'pointer',
+    transition: 'transform 0.2s',
+  },
+  listItemHover: {
+    transform: 'scale(1.05)',
   },
   image: {
-    width: "500px",
-    height: "auto",
-    borderRadius: "1rem",
+    width: '100%',
+    height: 'auto',
+    borderRadius: '8px',
   },
 };
 
@@ -41,7 +49,9 @@ export default function AllPlayers({ puppyId, setPuppyId }) {
 
   console.log("players: ", players);
   return (
+
     <div>
+      <SearchBar players={players} />
       <h2>All Players</h2>
       <ul style={styles.list}>
         {players.length ? (

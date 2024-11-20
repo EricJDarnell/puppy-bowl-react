@@ -2,11 +2,11 @@ import React from 'react'
 import AllPlayers from './components/AllPlayers'
 import { useState } from 'react'
 import { Routes, Route } from'react-router-dom'
-import './App.css'
 import SinglePlayer from './components/SinglePlayer'
 
 function App() {
   const [puppyId, setPuppyId] = useState(null)
+  
 
   return (
     <Routes>
