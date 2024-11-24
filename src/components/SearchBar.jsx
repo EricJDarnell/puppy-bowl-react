@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import SinglePlayer from "./SinglePlayer";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar({ players, setPuppyId, puppyId }) {
@@ -7,7 +6,7 @@ export default function SearchBar({ players, setPuppyId, puppyId }) {
   const navigate = useNavigate();
 
   function navigateOnSearch() {
-    const pup1 = players.find((pup) => pup.name === search);
+    const pup1 = players.find((pup) => pup.name.toLowerCase().includes(search.toLowerCase()));
     setPuppyId(pup1.id);
     navigate("/puppy");
 

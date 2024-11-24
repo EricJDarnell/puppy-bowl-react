@@ -28,8 +28,6 @@ export default function AddPlayer() {
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await addPlayer(pupObj);
-    console.log('response: ', await response);
-    console.log('response.data.newPlayer: ', await response.data.newPlayer);
     setGoodBoy(await response.data.newPlayer);
   }
   const navigate = useNavigate();

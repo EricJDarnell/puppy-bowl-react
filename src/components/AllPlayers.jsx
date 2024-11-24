@@ -23,6 +23,8 @@ const styles = {
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     cursor: 'pointer',
     transition: 'transform 0.2s',
+    backgroundColor: '#BFB8AD',
+    color: '#4E4C67',
   },
   listItemHover: {
     transform: 'scale(1.05)',
@@ -32,6 +34,11 @@ const styles = {
     height: 'auto',
     borderRadius: '8px',
   },
+  button: {
+    backgroundColor: "#823329",
+    color: "#EADEDA",
+    borderRadius: "1rem",
+  }
 };
 
 export default function AllPlayers({ puppyId, setPuppyId }) {
@@ -44,8 +51,7 @@ export default function AllPlayers({ puppyId, setPuppyId }) {
     }
     fetchData();
   }, []);
-
-  console.log("players: ", players);
+  
   return (
 
     <div>
@@ -64,7 +70,7 @@ export default function AllPlayers({ puppyId, setPuppyId }) {
                 >
                   <img style={styles.image} src={pup.imageUrl} alt={pup.name} />
                   <div>{pup.name}</div>
-                  <button onClick={(e) => {
+                  <button style={styles.button} onClick={(e) => {
                     setPuppyId(pup.id);
                     navigate(`/puppy`);
                   }}>Puppy Details</button>

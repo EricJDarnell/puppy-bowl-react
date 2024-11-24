@@ -1,4 +1,4 @@
-import { fetchSinglePlayer } from "../API";
+import { fetchSinglePlayer, putDownPuppy } from "../API";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,11 @@ const styles = {
         height: "auto",
         borderRadius: "1rem",
       },
+    button: {
+      backgroundColor: "#823329",
+      color: "#EADEDA",
+      borderRadius: "1rem",
+    }
     }
 
 export default function SinglePlayer({ puppyId, setPuppyId }) {
@@ -23,9 +28,7 @@ export default function SinglePlayer({ puppyId, setPuppyId }) {
   }, []);
   return (
     <>
-      <div onClick={(e) => {
-        navigate('/'); 
-        setPuppyId('');}}> Pupperoni
+      <div> Pupper
         {
             puppy && (
               <div>
@@ -35,6 +38,15 @@ export default function SinglePlayer({ puppyId, setPuppyId }) {
               </div>
             )
         }
+        <button onClick={(e) => {
+        navigate('/'); 
+        setPuppyId('');}}>Home</button>
+        <br />
+        <button style={styles.button} onClick={(e) => {
+          e.preventDefault()
+          putDownPuppy(puppy.id)
+          navigate('/');}
+          }>Old Yeller Time...</button>
       </div>
       
     </>

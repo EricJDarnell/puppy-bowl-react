@@ -9,7 +9,6 @@ export async function fetchPlayers() {
 export async function fetchSinglePlayer(playerId) {
   const response = await fetch(`${API_URL}/players/${playerId}`);
   const data = await response.json();
-  console.log("data: ", data.data.player);
   return data.data.player;
 }
 
@@ -23,7 +22,6 @@ export async function addPlayer(playerObj) {
       body: JSON.stringify(playerObj),
     });
     const result = await response.json();
-    console.log('result: ', result);
     return result;
   } catch (error) {
     console.error(error);
@@ -36,7 +34,6 @@ export async function putDownPuppy(playerId) {
             method: 'DELETE',
         });
         const result = await response.json();
-        console.log(result);
     } catch (error) {
         console.error(error);
     }
