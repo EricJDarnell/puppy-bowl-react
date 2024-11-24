@@ -10,7 +10,7 @@ const styles = {
       },
     }
 
-export default function SinglePlayer({ puppyId }) {
+export default function SinglePlayer({ puppyId, setPuppyId }) {
     const [puppy, setPuppy] = useState(null);
     const navigate = useNavigate();
 
@@ -23,15 +23,15 @@ export default function SinglePlayer({ puppyId }) {
   }, []);
   return (
     <>
-      <div onClick={(e) => navigate('/')}> Pupperoni
+      <div onClick={(e) => {
+        navigate('/'); 
+        setPuppyId('');}}> Pupperoni
         {
             puppy && (
               <div>
                 <div>Name: {puppy.name}</div>
                 <div>Breed: {puppy.breed}</div>
                 <img style={styles.image} src={puppy.imageUrl} alt={puppy.name} />
-                <div>Team: {puppy.team}</div>
-                <div></div>
               </div>
             )
         }

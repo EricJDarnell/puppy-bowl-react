@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import SinglePlayer from "./SinglePlayer";
+import { useNavigate } from "react-router-dom";
 
-export default function SearchBar({ players }) {
+export default function SearchBar({ players, setPuppyId, puppyId }) {
   const [search, setSearch] = useState("");
-  const [foundPuppy, setFoundPuppy] = useState(null);
+  const navigate = useNavigate();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("players: ", players);
-    setFoundPuppy(players.find((pup) => pup.name === search));
+  function navigateOnSearch() {
+    const pup1 = players.find((pup) => pup.name === search);
+    setPuppyId(pup1.id);
+    navigate("/puppy");
+
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          navigateOnSearch();
+        }}
+      >
         <label>
           Find Puppy{" "}
           <input
@@ -25,7 +33,6 @@ export default function SearchBar({ players }) {
         </label>
         <button>Search</button>
       </form>
-      {foundPuppy && <div>{foundPuppy.name}</div>}
     </>
   );
 }

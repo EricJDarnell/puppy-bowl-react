@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { fetchPlayers } from "../API";
-import { fetchSinglePlayer } from "../API";
-import SinglePlayer from "./SinglePlayer";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
@@ -30,7 +28,7 @@ const styles = {
     transform: 'scale(1.05)',
   },
   image: {
-    width: '100%',
+    width: '150px',
     height: 'auto',
     borderRadius: '8px',
   },
@@ -51,29 +49,30 @@ export default function AllPlayers({ puppyId, setPuppyId }) {
   return (
 
     <div>
-      <SearchBar players={players} />
+      <button onClick={(e) => {navigate('/add-player')}}>Add a player</button>
+      <SearchBar players={players} puppyId={puppyId} setPuppyId={setPuppyId} />
       <h2>All Players</h2>
       <ul style={styles.list}>
         {players.length ? (
-          <div>
+          <>
             {players.map((pup, idx) => {
               return (
                 <li
                   id={pup.id}
                   key={idx}
                   style={styles.listItem}
-                  onClick={(e) => {
+                >
+                  <img style={styles.image} src={pup.imageUrl} alt={pup.name} />
+                  <div>{pup.name}</div>
+                  <button onClick={(e) => {
                     setPuppyId(pup.id);
                     navigate(`/puppy`);
-                  }}
-                >
-                  <div>{pup.name}</div>
-                  <img style={styles.image} src={pup.imageUrl} alt={pup.name} />
-                  <div>{pup.breed}</div>
+                  }}>Puppy Details</button>
+
                 </li>
               );
             })}
-          </div>
+          </>
         ) : (
           <div>no players found</div>
         )}
